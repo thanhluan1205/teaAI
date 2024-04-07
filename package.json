@@ -1,0 +1,104 @@
+{
+  "name": "create-dapp-template",
+  "description": "Create dapps with one command",
+  "version": "1.8.3",
+  "bin": "./dist/index.js",
+  "bugs": {
+    "url": "https://github.com/thanhluan1205/create-dapp-template/issues"
+  },
+  "contributors": [
+    {
+      "name": "Conan",
+      "url": "https://github.com/thanhluan1205"
+    }
+  ],
+  "dependencies": {
+    "chalk": "4.1.2",
+    "commander": "^9.0.0",
+    "fs-extra": "^10.0.1",
+    "got": "11.8.3",
+    "handlebars": "^4.7.7",
+    "promisepipe": "^3.0.0",
+    "prompts": "^2.4.2",
+    "tar": "^6.1.11",
+    "update-check": "^1.5.4",
+    "validate-npm-package-name": "^3.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.3",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@commitlint/config-lerna-scopes": "^16.2.4",
+    "@jest/globals": "^29",
+    "@octokit/request": "^5.6.3",
+    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
+    "@types/cross-spawn": "^6.0.3",
+    "@types/fs-extra": "^9.0.13",
+    "@types/got": "9.6.12",
+    "@types/jest": "^29",
+    "@types/jest-when": "^3.5.3",
+    "@types/node": "^17.0.21",
+    "@types/prompts": "2.0.14",
+    "@types/tar": "6.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vercel/ncc": "^0.33.4",
+    "commitizen": "^4.3.0",
+    "copyfiles": "^2.4.1",
+    "cross-spawn": "^7.0.3",
+    "dir-compare": "^4.2.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^8.10.0",
+    "husky": "^7.0.4",
+    "jest": "^29",
+    "jest-when": "^3.6.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.5.0",
+    "pinst": "^3.0.0",
+    "prettier": "^2.8.8",
+    "shx": "^0.3.4",
+    "tempy": "1.0.1",
+    "ts-jest": "^29",
+    "ts-node": "^10.9.1",
+    "typescript": "~4.6.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "/dist",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "ethers",
+    "ethereum",
+    "react",
+    "vue",
+    "web3",
+    "yarn"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "packageManager": "yarn@3.2.0",
+  "repository": {
+    "name": "thanhluan1205/create-dapp-template",
+    "type": "git",
+    "url": "https://github.com/thanhluan1205/create-dapp-template"
+  },
+  "scripts": {
+    "build": "ncc build ./src/index.ts --out dist/ && yarn copy-files",
+    "clean": "shx rm -rf ./coverage ./dist",
+    "copy-files": "copyfiles --up 1 \"src/gitignore\" dist/",
+    "lint": "yarn run lint:ts && yarn run prettier:check",
+    "lint:ts": "eslint --config ./.eslintrc.yaml --ignore-path ./.eslintignore --ext .js,.jsx,.ts,.tsx .",
+    "postinstall": "husky install",
+    "postpublish": "pinst --enable",
+    "prepack": "yarn build",
+    "prepublishOnly": "pinst --disable",
+    "prettier": "prettier --config .prettierrc.yaml --write \"**/*.{js,jsx,json,md,sol,ts,tsx,yaml,yml}\"",
+    "prettier:check": "prettier --check --config .prettierrc.yaml \"**/*.{js,json,jsx,md,sol,ts,tsx,yaml,yml}\"",
+    "test": "yarn run test:unit && yarn run test:integration",
+    "test:integration": "jest test/integration",
+    "test:unit": "jest test/unit",
+    "watch": "ncc build ./src/index.ts --out dist/ --watch"
+  }
+}
